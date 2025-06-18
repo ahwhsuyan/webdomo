@@ -1,137 +1,219 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>校园二手书交易系统 - 登录</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+      body {
+        min-height: 100vh;
+        margin: 0;
+        font-family: "Montserrat", "Microsoft YaHei", sans-serif;
+        position: relative;
+        overflow: hidden;
+      }
+      .bg-side {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100vw;
+        height: 100vh;
+        background: url("pic/seaside.jpg") center center/cover no-repeat;
+        z-index: 0;
+      }
+      .login-side {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        z-index: 1;
+        background: linear-gradient(
+          120deg,
+          rgba(161, 196, 253, 0.18) 0%,
+          rgba(194, 233, 251, 0.18) 100%
+        );
+      }
+      .login-container {
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: 24px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        padding: 48px 36px 36px 36px;
+        width: auto;
+        min-width: 340px;
+        max-width: 420px;
+        animation: fadeIn 1s;
+        margin-right: 8vw;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
         }
-
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .login-header {
+        text-align: center;
+        margin-bottom: 32px;
+      }
+      .login-header h1 {
+        color: #2d3a4b;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+        letter-spacing: 2px;
+      }
+      .login-header p {
+        color: #6c7a89;
+        font-size: 1rem;
+      }
+      .form-group {
+        margin-bottom: 22px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 7px;
+        color: #2d3a4b;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+      .form-group input {
+        width: 80%;
+        margin: 0 auto;
+        padding: 14px 16px;
+        border: none;
+        border-radius: 8px;
+        background: #f4f7fa;
+        font-size: 1rem;
+        color: #2d3a4b;
+        box-shadow: 0 2px 8px rgba(160, 196, 253, 0.08);
+        transition: box-shadow 0.3s, background 0.3s;
+      }
+      .form-group input:focus {
+        outline: none;
+        background: #e3f0ff;
+        box-shadow: 0 0 0 2px #7eb6ff;
+      }
+      .login-btn {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(90deg, #4a90e2 0%, #6fc3ff 100%);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 4px 16px rgba(74, 144, 226, 0.12);
+        transition: background 0.3s, transform 0.2s;
+      }
+      .login-btn:hover {
+        background: linear-gradient(90deg, #357abd 0%, #4a90e2 100%);
+        transform: translateY(-2px) scale(1.03);
+      }
+      .login-footer {
+        text-align: center;
+        margin-top: 28px;
+        font-size: 1rem;
+      }
+      .login-footer a {
+        color: #4a90e2;
+        text-decoration: none;
+        margin: 0 8px;
+        transition: color 0.2s;
+      }
+      .login-footer a:hover {
+        color: #357abd;
+        text-decoration: underline;
+      }
+      .error-message {
+        color: #ff4d4f;
+        font-size: 0.95rem;
+        margin-top: 5px;
+        display: none;
+      }
+      @media (max-width: 900px) {
         body {
-            font-family: 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+          flex-direction: column;
         }
-
+        .bg-side {
+          min-height: 220px;
+          height: 220px;
+          flex: none;
+        }
+        .login-side {
+          min-height: 60vh;
+        }
+      }
+      @media (max-width: 500px) {
         .login-container {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            width: 400px;
+          padding: 32px 10px 24px 10px;
+          border-radius: 0;
+          box-shadow: none;
+          min-height: 100vh;
         }
-
-        .login-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .login-header h1 {
-            color: #333;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .login-header p {
-            color: #666;
-            font-size: 14px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #333;
-            font-size: 14px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus {
-            border-color: #4A90E2;
-            outline: none;
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 12px;
-            background: #4A90E2;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .login-btn:hover {
-            background: #357ABD;
-        }
-
-        .login-footer {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .login-footer a {
-            color: #4A90E2;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .login-footer a:hover {
-            text-decoration: underline;
-        }
-
-        .error-message {
-            color: #ff4d4f;
-            font-size: 14px;
-            margin-top: 5px;
-            display: none;
-        }
+      }
     </style>
-</head>
-<body>
-    <div class="login-container">
+  </head>
+  <body>
+    <div class="bg-side"></div>
+    <div class="login-side">
+      <div class="login-container">
         <div class="login-header">
-            <h1>校园二手书交易系统</h1>
-            <p>欢迎回来，请登录您的账号</p>
+          <h1>校园二手书交易系统</h1>
+          <p>欢迎回来，请登录您的账号</p>
         </div>
         <form id="loginForm" action="/login.servlet">
-            <div class="form-group">
-                <label for="username">用户名</label>
-                <input type="text" id="username" name="username" placeholder="请输入用户名" required>
-                <div class="error-message" id="usernameError"></div>
-            </div>
-            <div class="form-group">
-                <label for="password">密码</label>
-                <input type="password" id="password" name="password" placeholder="请输入密码" required>
-                <div class="error-message" id="passwordError"></div>
-            </div>
-            <button type="submit" class="login-btn">登录</button>
+          <div class="form-group">
+            <label for="username">用户名</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="请输入用户名"
+              required
+              autocomplete="username"
+              style="width: 320px"
+            />
+            <div class="error-message" id="usernameError"></div>
+          </div>
+          <div class="form-group">
+            <label for="password">密码</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="请输入密码"
+              required
+              autocomplete="current-password"
+              style="width: 320px"
+            />
+            <div class="error-message" id="passwordError"></div>
+          </div>
+          <button type="submit" class="login-btn">登录</button>
         </form>
         <div class="login-footer">
-            <a href="./register/register.html" onclick="showRegister()">还没有账号？立即注册</a>
-            <span style="margin: 0 10px">|</span>
-            <a href="#" onclick="forgotPassword()">忘记密码？</a>
+          <a href="./register/register.html">还没有账号？立即注册</a>
+          <span style="color: #b0b0b0">|</span>
+          <a href="#" onclick="alert('请联系管理员重置密码')">忘记密码？</a>
         </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
